@@ -12,6 +12,7 @@ webfont.modules.google.FontApiUrlBuilder = function(apiUrl, text) {
   this.fontFamilies_ = [];
   this.subsets_ = [];
   this.text_ = text || '';
+  this.display_ = [];
 };
 
 
@@ -32,6 +33,9 @@ goog.scope(function () {
     for (var i = 0; i < length; i++) {
       var elements = fontFamilies[i].split(':');
 
+      if (elements.length == 4) {
+        this.display_.push(elements.pop());
+      }
       if (elements.length == 3) {
         this.subsets_.push(elements.pop());
       }
@@ -70,6 +74,10 @@ goog.scope(function () {
 
     if (this.text_.length > 0) {
       url += '&text=' + encodeURIComponent(this.text_);
+    }
+    
+    if (this.display.length > 0) {
+      url += '&display=' + encodeURIComponent(this.display_);
     }
 
     return url;
