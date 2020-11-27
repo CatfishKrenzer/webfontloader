@@ -34,15 +34,19 @@ goog.scope(function () {
       var elements = fontFamilies[i].split(':');
 
       if (elements.length == 4) {
+        console.log(`4 - ${elements[3]}`);
         this.display_.push(elements.pop());
       }
       if (elements.length == 3) {
+        console.log(`3 - ${elements[2]}`);
         this.subsets_.push(elements.pop());
       }
       var joinCharacter = '';
       if (elements.length == 2 && elements[1] != ''){
+        console.log(`2 - ${elements[1]}`);
         joinCharacter = ':';
       }
+      console.log(`1 - ${elements[0]}`);
       this.fontFamilies_.push(elements.join(joinCharacter));
     }
   };
@@ -80,6 +84,7 @@ goog.scope(function () {
       url += '&display=' + encodeURIComponent(this.display_);
     }
 
+    console.log(`URL - ${url}`);
     return url;
   };
 });
